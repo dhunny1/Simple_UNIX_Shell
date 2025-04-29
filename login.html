@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Utune Music</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-container">
+
+<div class="auth-form">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+
+    <a href="#" class="google-button" onclick="googleLogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
+        Sign in with Google
+    </a>
+
+    <p><a href="signup.html">Create an account</a> | <a href="reset_password.html">Forgot Password?</a></p>
+</div>
+
+<script>
+async function login() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+    const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password})
+    });
+    const data = await response.json();
+    if (data.token) {
+        localStorage.setItem('token', data.token);
+        window.location.href = 'index.html'; // Redirect to Music Library
+    } else {
+        alert(data.error);
+    }
+}
+
+function googleLogin() {
+    // Redirect user to backend Google login URL
+    window.location.href = '/auth/google'; 
+}
+</script>
+
+</body>
+</html>

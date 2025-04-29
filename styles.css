@@ -1,0 +1,419 @@
+/* ---------------------------------------- */
+/*             GLOBAL STYLES                */
+/* ---------------------------------------- */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000000; /* black background */
+    color: #ffffff;
+    padding-bottom: 100px; /* leave space for fixed music player */
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Inputs */
+input, button {
+    font-family: inherit;
+}
+
+/* ---------------------------------------- */
+/*             NAVIGATION BAR               */
+/* ---------------------------------------- */
+
+.navbar {
+    background-color: black;
+    color: #a8faf7;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: #a8faf7;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #2059c0;
+}
+
+.nav-button {
+    background-color: #2059c0;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #1845a0;
+}
+
+/* Search Bar inside Navbar */
+.search-bar {
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+}
+
+/* ---------------------------------------- */
+/*           AUTH PAGES (Login/Signup)      */
+/* ---------------------------------------- */
+
+.auth-container {
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form {
+    background-color: #a8faf7;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    width: 300px;
+    text-align: center;
+}
+
+.auth-form h2 {
+    margin-bottom: 1rem;
+    color: #2059c0;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 4px;
+}
+
+.auth-form button {
+    background-color: #2059c0;
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #1845a0;
+}
+
+/* ---------------------------------------- */
+/*          Custom Google Button            */
+/* ---------------------------------------- */
+
+.google-button {
+    background-color: #2059c0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.google-button img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* ---------------------------------------- */
+/*           SONG LIST DISPLAY             */
+/* ---------------------------------------- */
+
+#songList {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+#favoritesList {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ---------------------------------------- */
+/*              Each Song Card              */
+/* ---------------------------------------- */
+
+.song {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.song-info img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.song-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.song-details {
+    font-size: 0.9rem;
+    color: #a8faf7;
+    margin: 0;
+}
+
+/* ---------------------------------------- */
+/*        Actions: Heart + Play Button      */
+/* ---------------------------------------- */
+.song-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.heart {
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.heart:hover {
+    transform: scale(1.3);
+}
+
+.favorited {
+    color: #ff4d6d; /* bright pink when favorited */
+    animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.play-button {
+    background-color: #2059c0;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-button:hover {
+    background-color: #1845a0;
+}
+
+/* ---------------------------------------- */
+/*         FIXED MUSIC PLAYER AT BOTTOM     */
+/* ---------------------------------------- */
+
+#musicPlayer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    color: #a8faf7;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+#nowPlayingInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#nowPlayingInfo img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+audio {
+    max-width: 300px;
+}
+
+#playerControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#playerControls button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #a8faf7;
+    transition: transform 0.2s;
+}
+
+#playerControls button:hover {
+    transform: scale(1.2);
+}
+
+#nowPlayingPlaylist {
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* ---------------------------------------- */
+/*           Playlists Section              */
+/* ---------------------------------------- */
+#playlistsList {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.playlist-card {
+    background-color: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-5px);
+}
+
+.add-playlist-button {
+    background-color: #a8faf7;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.add-playlist-button:hover {
+    background-color: #7ad7d2;
+}
+
+/* ---------------------------------------- */
+/*              Toast Messages              */
+/* ---------------------------------------- */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2059c0;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    z-index: 1000;
+}
+.toast.show {
+    opacity: 1;
+    bottom: 50px;
+}
+
+/* ---------------------------------------- */
+/*                Modal                     */
+/* ---------------------------------------- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  .modal-content {
+    background: #101010;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px #2059c0;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .modal.show {
+  display: flex;
+}
+  .modal-buttons {
+    margin-top: 1rem;
+  }
+  .modal-buttons button {
+    background: #2059c0;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  .modal-buttons button:hover {
+    background: #a8faf7;
+    color: black;
+  }
+  .hidden {
+    display: none;
+  }
+  
+ 
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup - Utune Music</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-container">
+
+<div class="auth-form">
+    <h2>Signup</h2>
+    <input type="text" id="signupUsername" placeholder="Username" required>
+    <input type="email" id="signupEmail" placeholder="Email" required>
+    <input type="password" id="signupPassword" placeholder="Password" required>
+    <button onclick="signup()">Create Account</button>
+
+    <p><a href="login.html">Already have an account?</a></p>
+</div>
+
+<script>
+    async function signup() {
+        const username = document.getElementById('signupUsername').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const password = document.getElementById('signupPassword').value.trim();
+    
+        if (!username || !email || !password) {
+            alert('Please fill in all fields!');
+            return;
+        }
+    
+        try {
+            const res = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+    
+            const data = await res.json();
+    
+            if (!res.ok) {
+                showToast(data.error || 'Signup failed.');
+
+                return;
+            }
+    
+            // Save token
+            localStorage.setItem('token', data.token);
+    
+            // Redirect to main music library (index.html)
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Signup error:', error);
+            showToast('Please fill in all fields!');
+
+        }
+    }
+</script>
+    
+</body>
+</html>

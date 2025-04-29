@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Utune Music</title>    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Top Navigation Bar -->
+<nav class="navbar">
+    <h1><img src="images\logoUtune.svg" alt="Utune Music Logo" width="150" height="40"></h1>
+    
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Music Library</a>
+        <a href="#" id="myLibraryLink" class="nav-link">My Library</a>
+        <input type="text" id="searchInput" placeholder="Search songs..." class="search-bar">
+        <button onclick="logout()" class="nav-button">Logout</button>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container" id="mainContent">
+    <h2>Music Library</h2>
+    <div id="songList"></div>
+</div>
+
+<!-- My Library Section -->
+<div class="container" id="myLibrarySection" style="display: none;">
+    <h2>My Favorites ❤️</h2>
+    <h3 id="currentPlaylistTitle" style="margin-top: 1rem;"></h3>
+    <div id="favoritesList"></div>
+
+    <h2 style="margin-top: 2rem;">My Playlists 🎶</h2>
+    
+    <!-- Create Playlist Form -->
+    <form id="createPlaylistForm" onsubmit="createPlaylist(event)">
+        <input type="text" id="playlistName" placeholder="New Playlist Name..." required>
+        <button type="submit">Create Playlist</button>
+    </form>
+
+    <!-- Playlist Grid -->
+    <div id="playlistsList"></div>
+</div>
+
+<!-- Music Player Section -->
+<div id="musicPlayer">
+    <div id="nowPlayingInfo">
+        <img id="nowPlayingImage" src="images/default-album.png" alt="Album Art">
+        <div>
+            <p id="nowPlayingTitle">Select a song</p>
+            <p id="nowPlayingArtist"></p>
+            <p id="nowPlayingPlaylist" style="font-size: 0.9rem; color: gray;"></p> 
+        </div>
+    </div>
+    <div id="playerControls">
+        <button id="prevButton">⏮️</button>
+        <audio id="audioPlayer" controls></audio>
+        <button id="nextButton">⏭️</button>
+    </div>
+</div>
+
+
+<!-- Confirmation Modal -->
+<div id="confirmationModal" class="modal hidden">
+    <div class="modal-content">
+        <p id="confirmationMessage">Are you sure?</p>
+        <button id="confirmYes">Yes</button>
+        <button id="confirmNo">No</button>
+    </div>
+</div>
+
+<!-- Add To Playlist Modal -->
+<div id="addToPlaylistModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Select Playlist</h3>
+        <select id="playlistSelect"></select>
+        <div class="modal-actions">
+            <button id="addToPlaylistConfirm">Add</button>
+            <button id="addToPlaylistCancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js" defer></script>
+
+<script>
+// --- Auth Check ---
+if (!localStorage.getItem('token')) {
+    window.location.href = 'login.html'; // No token = not logged in
+}
+
+// --- Logout function ---
+function logout() {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+}
+</script>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('token')) {
+    localStorage.setItem('token', urlParams.get('token'));
+}
+</script>
+
+</body>
+</html>
